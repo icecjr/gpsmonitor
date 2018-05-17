@@ -1,0 +1,45 @@
+源结构列表
+main.go                 主文件，完成读配置文件，连接数据库和mqtt转发服务器，并开始处理
+timeUpdate.go           维持mqtt收到报文的节点列表和存活状态
+conf.ini                所有全局配置属性
+mqttReceive.go          mqtt接收报文，设备和mqtt中间件连接，然后通过mqtt转发到本服务器
+tcpConnection.go        TCP接收报文，设备直接与服务器连接
+requestGD.go            请求高德坐标转换，以及通过LBS信息得到GPS信息
+getTableNo.go           通过设备ID计算数据库中存储表的名字
+messageInterface.go     建立报文处理接口
+loginMessage.go         Login报文处理
+gpsAndlbsMessage.go     gps和lbs信息
+utils.go                一些公共函数
+conf.ini                配置文件
+测试源码
+client.go                发送一个带主题的包 
+
+设备列表：
+GT740  GT740W
+    登录包 0x01
+    GPS 定位包(UTC) 0x22
+    心跳包 0x23
+    终端在线指令回复 0x21
+    报警数据(UTC) 0x26
+    GPS 地址请求包(UTC) 0x2A
+    LBS 多基站扩展信息包 0x28
+    LBS 地址请求包 0x17
+    在线指令 0x80
+    校时包 0x8A
+    信息传输通用包 0x94
+    中文地址回复包 0x17
+    英文地址回复包 0x97
+
+GV25Px
+    登陆信息 0x01
+    定位数据 0x22
+    状态信息 0x13 心跳包(状态信息包)
+    字符串信息 0x21
+    报警数据   0x26
+    时区时间   0x27
+    GPS、电话号码查询地址信息 0x2A
+    服务器向终端发送指令信息 0x80
+
+G17
+
+S17
